@@ -1,13 +1,6 @@
-# electron-react-typescript
+# XCI-Manager
 
-### XCI-Manager
-
-[![React](docs/img/react.png)](https://reactjs.org/)
-[![Webpack](docs/img/webpack.png)](https://webpack.js.org/)
-[![TypeScript](docs/img/ts.png)](https://www.typescriptlang.org/)
-[![Electron](docs/img/electron.png)](https://electronjs.org/)
-[![Redux](docs/img/redux.png)](https://redux.js.org/)
-[![Jest](docs/img/jest.png)](https://facebook.github.io/jest/)
+### A cross-platform XCI manager
 
 [Electron](https://electronjs.org/) application boilerplate based on [React](https://reactjs.org/), [Redux](https://redux.js.org/), and [Webpack](https://webpack.js.org/) for rapid application development using [TypeScript](https://www.typescriptlang.org/).
 
@@ -68,3 +61,10 @@ In case you want to get rid of this, you can removing the following from `packag
 1. Remove `lint-staged`, `prettier`, `tslint-config-prettier`, and `husky` from the `devDependencies`
 
 Also remove `tslint-config-prettier` from the `extends` section in `tslint.json`.
+
+[![React](docs/img/react.png)](https://reactjs.org/)
+[![Webpack](docs/img/webpack.png)](https://webpack.js.org/)
+[![TypeScript](docs/img/ts.png)](https://www.typescriptlang.org/)
+[![Electron](docs/img/electron.png)](https://electronjs.org/)
+[![Redux](docs/img/redux.png)](https://redux.js.org/)
+[![Jest](docs/img/jest.png)](https://facebook.github.io/jest/)
