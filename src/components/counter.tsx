@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IncrementAction, DecrementAction, CounterAction } from '../actions/counterActions';
+import { IncrementAction, DecrementAction, CounterAction } from '../actions/counter-actions';
 
 require('./Counter.scss');
 const redCubeImg = require('./RedCube.jpg');

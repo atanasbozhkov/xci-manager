@@ -7,7 +7,10 @@
     ],
     "jsRules": {},
     "rules": {
+        "prefer-array-literal": false,
+        "quotemark": ["true", "single", "jsx-single"],
         "max-line-length": [true, 120],
+        "object-curly-spacing": "always",
         "trailing-comma": false,
         "ter-indent": [
             true, 

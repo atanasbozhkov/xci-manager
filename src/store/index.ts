@@ -1,4 +1,7 @@
-import { combineReducers, compose, applyMiddleware, createStore, Store } from 'redux';
+import {
+    combineReducers, compose, applyMiddleware, createStore, Store, Reducer, StoreEnhancer, Action,
+    AnyAction
+} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { rootReducer, RootState } from '../reducers';
@@ -9,7 +12,13 @@ const configureStore = (initialState?: RootState): Store<RootState | undefined> 
     return createStore<RootState | undefined>(rootReducer, initialState, enhancer);
 };
 
-const store = configureStore();
+const INITIAL_STATE: RootState = {
+    gameFolder: {
+        value: ''
+    }
+};
+
+const store = configureStore(INITIAL_STATE);
 
 if (typeof module.hot !== 'undefined') {
     module.hot.accept('../reducers', () =>

@@ -14,7 +14,7 @@
     "start": "electron .",
     "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json",
     "precommit": "lint-staged",
-    "test": "jest '(\\/test\\/(?!e2e/)).*'",
+    "test": "jest '(\\/test\\/(?!e2e/)).*' --watch",
     "pretest:e2e": "npm run build",
     "test:e2e": "jest '(\\/test\\/e2e/).*'",
     "pack": "npm run build && electron-builder --dir",
@@ -71,7 +71,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/atanasbozhkov/xci-manager.git"
+    "url": "git+ssh://git@https://github.com/atanasbozhkov/xci-manager.git"
   },
   "author": {
     "name": "Your name",
@@ -79,9 +79,9 @@
   },
   "license": "SEE LICENSE",
   "bugs": {
-    "url": "https://github.com/atanasbozhkov/xci-manager/issues"
+    "url": "https://github.com/Robinfr/electron-react-typescript/issues"
   },
-  "homepage": "https://github.com/atanasbozhkov/xci-manager/",
+  "homepage": "https://github.com/Robinfr/electron-react-typescript",
   "devDependencies": {
     "@types/electron-devtools-installer": "^2.0.2",
     "@types/jest": "^21.1.9",

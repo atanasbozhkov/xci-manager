@@ -1,11 +1,13 @@
 import { Reducer, combineReducers } from 'redux';
 
-import { CounterState, counterReducer } from './counterReducer';
+import { gameFolderReducer } from './game-folder-reducer';
 
 export interface RootState {
-    counter: CounterState;
+    gameFolder: {
+        value: string
+    }
 }
 
 export const rootReducer = combineReducers<RootState | undefined>({
-    counter: counterReducer
+    gameFolder: gameFolderReducer
 });
