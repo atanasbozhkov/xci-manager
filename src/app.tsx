@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import application from './components/application';
 import store from './store';
+import { HactoolRunner } from './hactool-runner/hactool-runner';
 
 // Create main element
 const mainElement = document.createElement('div');
@@ -23,6 +24,8 @@ const render = (Component: () => JSX.Element) => {
 };
 
 render(application);
+const hactoolRunner = new HactoolRunner('test');
+hactoolRunner.extractXCI();
 
 // Hot Module Replacement API
 if (typeof module.hot !== 'undefined') {

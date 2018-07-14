@@ -11,6 +11,11 @@ Clone the repository with Git:
 git clone https://github.com/atanasbozhkov/xci-manager.git
 ```
 
+Note: If you are running on Windows - you will need the windows-build-tools.
+```
+npm install -g --production windows-build-tools
+```
+
 And then install the dependencies:
 
 ```bash
