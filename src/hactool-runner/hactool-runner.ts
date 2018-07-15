@@ -21,7 +21,7 @@ export class HactoolRunner {
             case 'linux':
                 return HactoolBinaries.LINUX;
             default:
-                // TODO: Maybe add a UI error for throws later?
+                // TODO: Maybe add a UI error handling later?
                 throw new Error('Unsupported operating system');
         }
     }
