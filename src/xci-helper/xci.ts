@@ -1,4 +1,23 @@
-import { createReadStream, ReadStream } from "fs";
+import { createReadStream } from 'fs';
+import { Int64, Int64LE } from 'int64-buffer';
+
+/**
+ *  Offset map for XCI files.
+ *  - Header - should be a hex string that contains "HEAD" word inside. We use this to check for a valid XCI file.
+ *  - Card size - a single byte number - an index - which represents the Card Size.
+ *  Index to card-size mapping in indexToCartridgeSize();
+ *  - Used bytes - Int64 at offset representing the exact used number of bytes.
+ *  TODO: Write partition docs.
+ */
+const BYTE_OFFSET_MAP = {
+    HEADER_START_OFFSET: 256,
+    HEADER_END_OFFSET: 300,
+    CARD_SIZE_START_OFFSET: 269,
+    CARD_SIZE_END_OFFSET: 270,
+    USED_BYTES_INT64_OFFSET: 280,
+    PARTITION_OFFSET_INT64_OFFSET: 304,
+    PARTITION_SIZE_INT64_OFFSET: 312
+};
 
 export class XCI {
 
@@ -7,24 +26,29 @@ export class XCI {
     public readonly cardSizeIndex: number;
     public readonly humanReadableSize: string;
     public readonly usedSize: string;
-    public readonly hfs0OffsetPartition: number;
-    public readonly hfs0SizePartition: number;
-
+    public readonly hfs0OffsetPartition: Int64;
+    public readonly hfs0SizePartition: Int64;
 
     private constructor(fileBuffer: Buffer) {
         this.xciData = fileBuffer;
-        this.header = this.xciData.toString('utf8', 256, 300);
-        const cardSize = this.xciData.toString('hex', 269, 270);
+        this.header = this.xciData.toString(
+            'utf8',
+            BYTE_OFFSET_MAP.HEADER_START_OFFSET,
+            BYTE_OFFSET_MAP.HEADER_END_OFFSET
+        );
+        const cardSize = this.xciData.toString(
+            'hex',
+            BYTE_OFFSET_MAP.CARD_SIZE_START_OFFSET,
+            BYTE_OFFSET_MAP.CARD_SIZE_END_OFFSET
+        );
         this.cardSizeIndex = parseInt(cardSize, 16);
         this.humanReadableSize = this.indexToCartridgeSize(this.cardSizeIndex);
-        // All of these might be 64bit integers -> TODO: fix it.
-        const usedBytesIndex = this.xciData.readInt32LE(280);
-        const usedBytes = usedBytesIndex * 512 + 512;
+        const usedBytesIndex = new Int64LE(this.xciData, BYTE_OFFSET_MAP.USED_BYTES_INT64_OFFSET);
+        const usedBytes = usedBytesIndex.toNumber() * 512 + 512;
         this.usedSize = this.humanReadableBytes(usedBytes);
-        this.hfs0OffsetPartition = this.xciData.readInt32LE(304);
-        this.hfs0SizePartition = this.xciData.readInt32LE(312);
+        this.hfs0OffsetPartition = new Int64LE(this.xciData, BYTE_OFFSET_MAP.PARTITION_OFFSET_INT64_OFFSET);
+        this.hfs0SizePartition = new Int64LE(this.xciData, BYTE_OFFSET_MAP.PARTITION_SIZE_INT64_OFFSET);
     }
-
 
     /**
      *  Receives a size index taken from the 269th byte of the .xci file
