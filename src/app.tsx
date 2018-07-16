@@ -5,7 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import application from './components/application';
 import store from './store';
-import { HactoolRunner } from './hactool-runner/hactool-runner';
+import { XCI } from "./xci-helper/xci";
 
 // Create main element
 const mainElement = document.createElement('div');
@@ -24,8 +24,13 @@ const render = (Component: () => JSX.Element) => {
 };
 
 render(application);
-const hactoolRunner = new HactoolRunner('test');
-hactoolRunner.extractXCI();
+const xciHelper = XCI.createXCI('/Users/atanasbozhkov/Desktop/XCI/test.xci',
+    (xciObject) => {
+        console.log(xciObject);
+    },
+    (onError) => {
+        console.log(onError);
+    });
 
 // Hot Module Replacement API
 if (typeof module.hot !== 'undefined') {
