@@ -14,7 +14,8 @@
     "start": "electron .",
     "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json",
     "precommit": "lint-staged",
-    "test": "jest '(\\/test\\/(?!e2e/)).*' --watch",
+    "test2": "jest '(\\/test\\/(?!e2e/)).*' --watch",
+    "test": "jest --watch",
     "pretest:e2e": "npm run build",
     "test:e2e": "jest '(\\/test\\/e2e/).*'",
     "pack": "npm run build && electron-builder --dir",
@@ -99,7 +100,7 @@
     "css-loader": "^0.28.7",
     "electron": "^1.7.10",
     "electron-builder": "^19.49.2",
-    "electron-devtools-installer": "^2.2.3",
+    "electron-devtools-installer": "^2.2.4",
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
@@ -133,6 +134,9 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-observable": "^1.0.0",
+    "rxjs": "^6.2.2",
+    "rxjs-compat": "^6.2.2"
   }
 }

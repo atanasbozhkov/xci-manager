@@ -5,7 +5,6 @@ import { AppContainer } from 'react-hot-loader';
 
 import application from './components/application';
 import store from './store';
-import { XCI } from "./xci-helper/xci";
 
 // Create main element
 const mainElement = document.createElement('div');
@@ -24,17 +23,10 @@ const render = (Component: () => JSX.Element) => {
 };
 
 render(application);
-const xciHelper = XCI.createXCI('/Users/atanasbozhkov/Desktop/XCI/test.xci',
-    (xciObject) => {
-        console.log(xciObject);
-    },
-    (onError) => {
-        console.log(onError);
-    });
 
 // Hot Module Replacement API
 if (typeof module.hot !== 'undefined') {
-    module.hot.accept('./components/Application', () => {
+    module.hot.accept('./components/application', () => {
         import('./components/application').then(World => {
             render(World.default);
         });
