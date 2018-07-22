@@ -4,7 +4,7 @@ import { Action } from 'redux';
 import { GAME_FOLDER_CHANGE } from '../actions/game-folder-actions';
 import { mergeMap } from 'rxjs/operators';
 import * as fs from 'fs';
-import { changeXciList } from '../actions/xci-list-action';
+import { changeXCIList } from '../actions/change-xci-list-action';
 
 const getFileExtension = (fileName: string): string => {
     return fileName.split('.')[1];
@@ -19,7 +19,7 @@ const readDirObservable = (directory: string): Observable<Action> => {
         fs.readdir(directory, (err, files: Array<string>) => {
             const xciFiles = files.filter(file => isXCI(file));
             console.log(`New XCI files ${xciFiles}`);
-            subscriber.next(changeXciList(xciFiles));
+            subscriber.next(changeXCIList(xciFiles));
         });
     });
 };

@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer, RootState } from '../reducers';
 import { createEpicMiddleware } from 'redux-observable';
 import { rootEpic } from '../epics';
+
 const epicMiddleware = createEpicMiddleware();
 
 const configureStore = (initialState?: RootState): Store<RootState | undefined> => {

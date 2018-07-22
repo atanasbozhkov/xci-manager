@@ -137,6 +137,7 @@
     "redux": "^3.7.2",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.2.2",
-    "rxjs-compat": "^6.2.2"
+    "rxjs-compat": "^6.2.2",
+    "typesafe-actions": "^2.0.4"
   }
 }

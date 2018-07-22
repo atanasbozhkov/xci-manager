@@ -1,5 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
-import { XCI_LIST_ACTION, XciListAction } from '../actions/xci-list-action';
+import { ActionsList } from '../actions/actions-list';
 
 export interface XCIListState {
     readonly files: Array<string>;
@@ -11,10 +11,10 @@ const defaultState: XCIListState = {
 
 export const xciListReducer: Reducer<XCIListState> = (state = defaultState, action: AnyAction) => {
     switch (action.type) {
-        case XCI_LIST_ACTION:
+        case ActionsList.CHANGE_XCI_LIST:
             return {
                 ...state,
-                files: action.value
+                files: action.payload
             };
         default:
             return state;

@@ -9,7 +9,6 @@ const application = () => (
             <GameFolderSelectView />
         </div>
         <div>
-            Hello World from Electron!
             <GameListView />
         </div>
     </div>

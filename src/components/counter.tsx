@@ -11,7 +11,7 @@ export interface Props {
     incrementValue: () => any;
     decrementValue: () => any;
 }
-
+// TODO: Delete
 const Counter: React.SFC<Props> = ({ value, incrementValue, decrementValue }) => (
     <div className="counter">
         <p>

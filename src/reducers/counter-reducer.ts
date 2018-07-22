@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { DECREMENT, INCREMENT, CounterAction } from '../actions/counter-actions';
-
+// TODO: Delete
 export interface CounterState {
     readonly value: number;
 }

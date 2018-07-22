@@ -118,7 +118,7 @@ export class XCI {
         });
     }
 
-    public static createXCI(fileName: string | Buffer,
+    public static createXCI(fileName: string,
                             onSuccess: (xci: XCI) => void,
                             onError: (errorMsg: string) => void) {
 

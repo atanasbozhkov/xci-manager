@@ -2,7 +2,7 @@ import { Action, ActionCreator } from 'redux';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
-
+// TODO: Delete
 export interface IncrementAction extends Action {
     type: 'INCREMENT';
 }

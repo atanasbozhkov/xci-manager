@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
 import { changeGameFolder, GameFolderChangeAction } from '../../actions/game-folder-actions';
 import { Dispatch } from 'redux';
+import { get } from 'lodash';
+
 require('./game-folder-select-view.scss');
 
 // Little workaround to set webkit-only attrs on an element.
@@ -21,7 +23,7 @@ export interface GameFolderSelectViewProps {
 const GameFolderSelect: React.SFC<GameFolderSelectViewProps> = ({ onFolderSelect, value }) => {
     const logger = (event: React.ChangeEvent<HTMLInputElement>) => {
         const fileList: FileList = ((event.target) as any).files;
-        const newFolder = fileList.item(0)!.path; // TODO: Make this safer
+        const newFolder = get(fileList, ['0', 'path']);
         console.log(`User update folder preference to: ${newFolder}`);
         onFolderSelect(newFolder);
     };
@@ -49,7 +51,11 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<GameFolderChangeAction>) => ({
-    onFolderSelect: (newFolder: string) => dispatch(changeGameFolder(newFolder))
+    onFolderSelect: (newFolder: string) => {
+        if (newFolder !== undefined) {
+            dispatch(changeGameFolder(newFolder));
+        }
+    }
 });
 
 export const GameFolderSelectView = connect(mapStateToProps, mapDispatchToProps)(GameFolderSelect);

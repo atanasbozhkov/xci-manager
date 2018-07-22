@@ -3,6 +3,8 @@ import * as renderer from 'react-test-renderer';
 
 import Counter from '../../src/components/counter';
 
+// TODO: Delete
+
 describe('Counter component', () => {
     it('renders correctly', () => {
         const tree = renderer
