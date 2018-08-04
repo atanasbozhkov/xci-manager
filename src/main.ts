@@ -1,6 +1,7 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import {setupIPCListeners} from "./main-process-helpers/folder-dialog";
 
 let win: BrowserWindow | null;
 
@@ -32,7 +33,6 @@ const createWindow = async () => {
             })
         );
     }
-
     if (process.env.NODE_ENV !== 'production') {
         // Open DevTools
         win.webContents.openDevTools();
@@ -41,6 +41,8 @@ const createWindow = async () => {
     win.on('closed', () => {
         win = null;
     });
+
+    setupIPCListeners();
 };
 
 app.on('ready', createWindow);

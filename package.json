@@ -87,7 +87,6 @@
     "@types/electron-devtools-installer": "^2.0.2",
     "@types/jest": "^21.1.9",
     "@types/lodash": "^4.14.112",
-    "@types/node-int64": "^0.4.29",
     "@types/react": "^16.0.31",
     "@types/react-dom": "^16.0.3",
     "@types/react-hot-loader": "^3.0.5",
@@ -130,7 +129,6 @@
   "dependencies": {
     "int64-buffer": "^0.1.10",
     "lodash": "^4.17.10",
-    "node-int64": "^0.4.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -138,6 +136,7 @@
     "redux-observable": "^1.0.0",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2",
-    "typesafe-actions": "^2.0.4"
+    "typesafe-actions": "^2.0.4",
+    "uikit": "^3.0.0-rc.10"
   }
 }

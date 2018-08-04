@@ -12,7 +12,7 @@ import { RootState } from '../reducers';
 import { join } from 'path';
 
 const getFileExtension = (fileName: string): string => {
-    return fileName.split('.')[ 1 ];
+    return fileName.split('.')[ 1 ] || '';
 };
 const XCI_EXTENSION = 'XCI';
 const isXCI = (fileName: string): boolean => {

@@ -4,7 +4,7 @@ import { RootState } from '../../reducers';
 import { changeGameFolder, GameFolderChangeAction } from '../../actions/game-folder-actions';
 import { Dispatch } from 'redux';
 import { get } from 'lodash';
-
+import { ipcRenderer } from 'electron';
 require('./game-folder-select-view.scss');
 
 // Little workaround to set webkit-only attrs on an element.
@@ -21,20 +21,21 @@ export interface GameFolderSelectViewProps {
 }
 
 const GameFolderSelect: React.SFC<GameFolderSelectViewProps> = ({ onFolderSelect, value }) => {
+    const openFolderSelect = () => {
+        console.log(`click `);
+        ipcRenderer.sendSync('folder-dialog')
+    };
+
     const logger = (event: React.ChangeEvent<HTMLInputElement>) => {
         const fileList: FileList = ((event.target) as any).files;
         const newFolder = get(fileList, ['0', 'path']);
         console.log(`User update folder preference to: ${newFolder}`);
         onFolderSelect(newFolder);
     };
-
     const inputView = (
-        <input
-            type='file'
-            ref={ref => addDirectory(ref)}
-            className={'game-folder-select-button'}
-            onChange={ logger }
-        />
+        <div uk-form-custom="true">
+            <button onClick={openFolderSelect} title={"Test"}> Test </button>
+        </div>
     );
     const view = value ? (<span> {value} </span>):  ( inputView );
 

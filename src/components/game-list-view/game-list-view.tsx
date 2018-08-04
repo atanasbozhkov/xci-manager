@@ -4,7 +4,6 @@ import { RootState } from '../../reducers';
 
 export interface GameListViewProps {
     games: Array<string>;
-    dispatch: (action: any) => void;
 }
 
 export class GameList extends React.Component<GameListViewProps, {}> {
@@ -24,4 +23,4 @@ const mapStateToProps = (state: RootState) => ({
     games: state.xciFiles.files
 });
 
-export const GameListView = connect(mapStateToProps, {})(GameList as any);
+export const GameListView = connect(mapStateToProps, {})(GameList);

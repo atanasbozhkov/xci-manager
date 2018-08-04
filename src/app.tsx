@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import application from './components/application';
 import store from './store';
+import {setupIPCListeners} from "./main-process-helpers/folder-dialog";
 
 // Create main element
 const mainElement = document.createElement('div');
