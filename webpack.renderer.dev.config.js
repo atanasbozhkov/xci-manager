@@ -14,9 +14,18 @@ module.exports = merge.smart(baseConfig, {
                 include: [path.resolve(__dirname, 'src')],
                 exclude: [
                     path.resolve(__dirname, 'src', 'main.ts'),
-                    path.resolve(__dirname, 'src', 'main-process-helpers', 'index.ts')
+                    path.resolve(__dirname, 'src', 'main-process-helpers')
                 ],
-                loaders: ['react-hot-loader/webpack', 'awesome-typescript-loader']
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            plugins: ['react-hot-loader/babel'],
+                        },
+                    },
+                    'awesome-typescript-loader', // (or awesome-typescript-loader)
+                ]
             }
         ]
     },

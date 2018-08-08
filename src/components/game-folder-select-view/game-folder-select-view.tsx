@@ -5,15 +5,8 @@ import { changeGameFolder, GameFolderChangeAction } from '../../actions/game-fol
 import { Dispatch } from 'redux';
 import { get } from 'lodash';
 import { ipcRenderer } from 'electron';
+import { IpcEvents } from "../../main-process-helpers/ipc-events";
 require('./game-folder-select-view.scss');
-
-// Little workaround to set webkit-only attrs on an element.
-function addDirectory(node: HTMLElement|null): void {
-    if (node) {
-        (node as any).directory = true;
-        (node as any).webkitdirectory = true;
-    }
-}
 
 export interface GameFolderSelectViewProps {
     value: string;
@@ -22,8 +15,7 @@ export interface GameFolderSelectViewProps {
 
 const GameFolderSelect: React.SFC<GameFolderSelectViewProps> = ({ onFolderSelect, value }) => {
     const openFolderSelect = () => {
-        console.log(`click `);
-        ipcRenderer.sendSync('folder-dialog')
+        ipcRenderer.send(IpcEvents.OPEN_SELECT_FOLDER_DIALOG)
     };
 
     const logger = (event: React.ChangeEvent<HTMLInputElement>) => {

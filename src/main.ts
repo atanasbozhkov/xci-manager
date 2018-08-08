@@ -1,17 +1,17 @@
-import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import {setupIPCListeners} from "./main-process-helpers/folder-dialog";
+import { setupIPCListeners } from "./main-process-helpers/folder-dialog";
 
 let win: BrowserWindow | null;
 
 const installExtensions = async () => {
     const installer = require('electron-devtools-installer');
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-    const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+    const extensions = [ 'REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS' ];
 
     return Promise.all(
-        extensions.map(name => installer.default(installer[name], forceDownload))
+        extensions.map(name => installer.default(installer[ name ], forceDownload))
     ).catch(console.log);
 };
 

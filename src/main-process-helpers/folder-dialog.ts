@@ -1,9 +1,9 @@
 import { ipcMain, dialog } from 'electron'
+import { IpcEvents } from "./ipc-events";
 
 // Register folder-dialog listener
 export const setupIPCListeners = () => {
-    ipcMain.on('folder-dialog', (event: any, arg: any) => {
-        console.log('hello from folder dialog');
+    ipcMain.on(IpcEvents.OPEN_SELECT_FOLDER_DIALOG, () => {
         dialog.showOpenDialog({
             properties: [ "openDirectory" ]
         });
