@@ -20,8 +20,8 @@ const BYTE_OFFSET_MAP = {
 };
 
 export class XCI {
-
     private xciData: Buffer;
+    public readonly fileName: string;
     public readonly header: string;
     public readonly cardSizeIndex: number;
     public readonly humanReadableSize: string;
@@ -29,8 +29,9 @@ export class XCI {
     public readonly hfs0OffsetPartition: Int64;
     public readonly hfs0SizePartition: Int64;
 
-    private constructor(fileBuffer: Buffer) {
+    private constructor(fileName: string, fileBuffer: Buffer) {
         this.xciData = fileBuffer;
+        this.fileName = fileName;
         this.header = this.xciData.toString(
             'utf8',
             BYTE_OFFSET_MAP.HEADER_START_OFFSET,
@@ -136,7 +137,7 @@ export class XCI {
         });
 
         fileStream.on('data', (data: Buffer) => {
-            const xci = new XCI(data);
+            const xci = new XCI(fileName, data);
             onSuccess(xci);
         });
     }

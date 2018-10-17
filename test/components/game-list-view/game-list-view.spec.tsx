@@ -17,7 +17,7 @@ describe('GIVEN a GameListView', () => {
             const mockDispatch = () => {
                 return;
             };
-            const view = renderer.create(<GameList games={games}  />);
+            const view = renderer.create(<GameList games={[]}  />);
             const instance: renderer.ReactTestInstance = view.root;
             const actual = instance.findByType('span');
             expect(actual.children[1]).toBe(games[0]);

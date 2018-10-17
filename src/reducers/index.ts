@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import { gameFolderReducer } from './game-folder-reducer';
 import { xciListReducer } from './xci-list-reducer';
+import { XCI } from "../xci-helper/xci";
 
 export interface RootState {
     gameFolder: {
@@ -9,6 +10,7 @@ export interface RootState {
     };
     xciFiles: {
         files: Array<string>;
+        xci: Array<XCI>;
     };
 }
 

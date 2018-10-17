@@ -19,7 +19,8 @@ const INITIAL_STATE: RootState = {
         value: ''
     },
     xciFiles: {
-        files: []
+        files: [],
+        xci: []
     }
 };
 
