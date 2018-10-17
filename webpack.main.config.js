@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 
 const baseConfig = require('./webpack.base.config');
-
+console.log('Using webpack.main.config.js');
 module.exports = merge.smart(baseConfig, {
     target: 'electron-main',
     entry: {
@@ -12,9 +12,10 @@ module.exports = merge.smart(baseConfig, {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts|\.tsx$/,
                 include: [
-                    path.resolve(__dirname, 'src', 'main.ts')
+                    path.resolve(__dirname, 'src', 'main.ts'),
+                    path.resolve(__dirname, 'src', 'main-process-helpers')
                 ],
                 loader: 'awesome-typescript-loader'
             }

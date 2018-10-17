@@ -5,7 +5,6 @@ import { changeGameFolder, GameFolderChangeAction } from '../../actions/game-fol
 import { Dispatch } from 'redux';
 import { get } from 'lodash';
 import { ipcRenderer } from 'electron';
-import { IpcEvents } from "../../main-process-helpers/ipc-events";
 require('./game-folder-select-view.scss');
 
 export interface GameFolderSelectViewProps {
@@ -15,27 +14,21 @@ export interface GameFolderSelectViewProps {
 
 const GameFolderSelect: React.SFC<GameFolderSelectViewProps> = ({ onFolderSelect, value }) => {
     const openFolderSelect = () => {
-        ipcRenderer.send(IpcEvents.OPEN_SELECT_FOLDER_DIALOG)
+        ipcRenderer.on('directoryLocation', (event: any, data: string) => {
+            // TODO: Add error handling
+            onFolderSelect(get(data, [ '0' ]));
+        });
+        ipcRenderer.send('openSelectFolderDialog');
     };
 
-    const logger = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const fileList: FileList = ((event.target) as any).files;
-        const newFolder = get(fileList, ['0', 'path']);
-        console.log(`User update folder preference to: ${newFolder}`);
-        onFolderSelect(newFolder);
-    };
     const inputView = (
         <div uk-form-custom="true">
-            <button onClick={openFolderSelect} title={"Test"}> Test </button>
+            <button onClick={openFolderSelect} title={"Select XCI Folder"}> Select Folder </button>
         </div>
     );
     const view = value ? (<span> {value} </span>):  ( inputView );
 
-    return (
-        <span>
-            {view}
-        </span>
-    )
+    return (<span> {view} </span>);
 };
 
 

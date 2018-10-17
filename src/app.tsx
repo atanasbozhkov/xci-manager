@@ -5,7 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import application from './components/application';
 import store from './store';
-
+import '@material-ui/icons'
 // Create main element
 const mainElement = document.createElement('div');
 document.body.appendChild(mainElement);
